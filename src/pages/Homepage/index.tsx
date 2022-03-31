@@ -1,15 +1,13 @@
 import { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Tabela from "./components/Tabela";
-import imagem from './assets/teste.png';
 
 
-export default function Teste(){
+export default function Homepage(){
     
 
   const navigate = useNavigate()
   const trocaPagina = () =>{
-    navigate('/inicio')
+    navigate('/login')
   }
     return(
     <Fragment>
