@@ -22,11 +22,12 @@ body, html {
   align-items: center;
   justify-content: center;
   padding: 15px;
+
   /* background-color: #111; */
-  background-image: url('../../assets/teste.jpg');
+ /*  background-image: url('../../assets/teste.jpg');
   background-size: auto;
   background-repeat: no-repeat;
-  position: absolute;
+  position: absolute; */
 }
 
 .wrap-login {
@@ -100,10 +101,10 @@ body, html {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
   background: #6a7dfe;
-  background: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -o-linear-gradient(to left, #21d4fd, #b721ff);
-  background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
-  background: linear-gradient(to left, #21d4fd, #b721ff);
+  background: -webkit-linear-gradient(to left, #ee8d0e, #eb3232);
+  background: -o-linear-gradient(to left, #ee8d0e, #eb3232);
+  background: -moz-linear-gradient(to left, #ee8d0e, #eb3232);
+  background: linear-gradient(to left, #ee8d0e, #eb3232);
 }
 
 .focus-input::after {

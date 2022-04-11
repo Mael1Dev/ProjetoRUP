@@ -4,13 +4,15 @@ import { LayoutComponents } from "../../components/LayoutComponents"
 
 
 
-
 export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("")
+  const [fullName, setfullName] = useState("")
   const [confirmPassword, setConfirm] = useState("");
+  const [document, setDocument] = useState("")
   const navigate = useNavigate()
+  
 
   const trocaPagina = () =>{
     navigate('/home')
@@ -23,17 +25,33 @@ export const Register = () => {
         <span className="login-form-title"> Criar Conta </span>
 
         <span className="login-form-title">
-          {/* <img src={jpIMG} alt="Jovem Programador" /> */}
+          {/* <img src={jpIMG} alt="" /> */}
         </span>
 
         <div className="wrap-input">
           <input
             className={name !== "" ? "has-val input" : "input"}
-            type="email"
+            type="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <span className="focus-input" data-placeholder="Nome *"></span>
+          <span className="focus-input" data-placeholder="Name *"></span>
+        </div>
+        <div className="wrap-input">
+        <input
+          className={fullName !== "" ? "has-val input" : "input"}
+          type="fullName"
+          value={fullName}
+          onChange={(e) => setfullName(e.target.value)}/>
+          <span className="focus-input" data-placeholder="Last Name *" ></span>
+        </div>
+        <div className="wrap-input">
+          <input
+          className={document !== "" ? "has-val input" : "input"}
+          type="text"
+          value={document}
+          onChange={(e) => setDocument(e.target.value)} />
+          <span className="focus-input" data-placeholder="Document *"></span>
         </div>
 
         <div className="wrap-input">
