@@ -1,13 +1,18 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './styles.css'
 import img from '../../assets/uno_velho.png'
+import { Modal } from "../../components/Modal";
 //acrescentar o painel de filtro
 //ajustar o header
 //melhorar os botões
 
 export default function Homepage(){
-    
+  
+  const [showModal, setShowModal] = useState(false);
+  function openModal() {
+    setShowModal(true)
+  }
 
   const navigate = useNavigate()
   const trocaPagina = () =>{
@@ -31,7 +36,7 @@ export default function Homepage(){
         </div>
         <div className="home-content">
           <div className="home-content-auction">
-            <div className="home-auction-card">
+            <div onClick={openModal} className="home-auction-card">
               <img src={img}></img>
               <h4>Carro novinho</h4>
               <span>Carro de leilão Carro de leilão Carro de leilão Carro de leilão </span>
@@ -57,6 +62,15 @@ export default function Homepage(){
             </div>
           </div>
         </div>
+        {showModal && <Modal header="fiat-uno" setShowModal={setShowModal} cancelFunction={() =>{}} confirmFunction={() =>{}} loadingModal="" confirmText="Dar lance" >
+        <div className="home-auction-card">
+              <img src={img}></img>
+              <h4>Carro novinho</h4>
+              <span>Carro de leilão Carro de leilão Carro de leilão Carro de leilão </span>
+              <span>R$ 10.000,00</span>
+              <a>DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - </a>
+            </div>
+        </Modal>}
       </div>
     );
 }
