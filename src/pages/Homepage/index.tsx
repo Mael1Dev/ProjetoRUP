@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './styles.css'
 import img from '../../assets/uno_velho.png'
 import { Modal } from "../../components/Modal";
+
 //acrescentar o painel de filtro
 //ajustar o header
 //melhorar os botões
@@ -15,9 +16,14 @@ export default function Homepage(){
   }
 
   const navigate = useNavigate()
-  const trocaPagina = () =>{
+
+  const changePageLogin = () =>{
     navigate('/login')
   }
+  const changePageRegister = () =>{
+    navigate('/register')
+  }
+
     return(
       <div className="home-container">
         <nav className="home-nav">
@@ -25,8 +31,8 @@ export default function Homepage(){
             <span>RUP Leilões</span>
           </div>
           <div>
-          <button onClick={trocaPagina}>Login</button>
-          <button onClick={trocaPagina}>Cadastre-se</button>
+          <button onClick={changePageLogin}>Login</button>
+          <button onClick={changePageRegister}>Cadastre-se</button>
           </div>
         </nav>
         <div className="home-title">
@@ -62,7 +68,7 @@ export default function Homepage(){
             </div>
           </div>
         </div>
-        {showModal && <Modal header="fiat-uno" setShowModal={setShowModal} cancelFunction={() =>{}} confirmFunction={() =>{}} loadingModal="" confirmText="Dar lance" >
+        {showModal && <Modal header="Fiat Uno zero bala" setShowModal={setShowModal} cancelFunction={() =>{}} confirmFunction={() =>{}} loadingModal="" confirmText="Dar lance" >
         <div className="home-auction-card">
               <img src={img}></img>
               <h4>Carro novinho</h4>

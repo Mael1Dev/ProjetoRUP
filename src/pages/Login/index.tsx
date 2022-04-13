@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { LayoutComponents } from '../../components/LayoutComponents'
-import martelo from '../../assets/martelo.png'
+
 
 
 export const Login = () => {
