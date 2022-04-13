@@ -30,7 +30,7 @@ export default function Homepage(){
           <div>
             <span>RUP Leilões</span>
           </div>
-          <div>
+          <div className="btn-login">
           <button onClick={changePageLogin}>Login</button>
           <button onClick={changePageRegister}>Cadastre-se</button>
           </div>
