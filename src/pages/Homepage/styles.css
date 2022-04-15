@@ -1,24 +1,21 @@
-.home-contaier {
-    width: 100vw;
-    height: 100vh;
+.home-container {
+    
+    height: 10rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
-.home-nav {
-    height: 4rem;
+.home-content{
+    height: calc(100vh - 8rem);
     width: 100%;
-    background-color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-}
-.home-nav span{
-    margin-left: 1rem;
-    color: white;
     
 }
-.home-nav button{
+.home-title span{
+    margin-left: 1rem;
+    color: black;
+    
+}
+.home-title button{
     width: 7rem;
     height: 2rem;
     padding: 4px;
@@ -29,32 +26,28 @@
     cursor: pointer;
     color: white;
     border-style: hidden;
-    background: #6a7dfe;
-    background: -webkit-linear-gradient(to left, #ee8d0e, #eb3232);
-    background: -o-linear-gradient(to left, #ee8d0e, #eb3232);
-    background: -moz-linear-gradient(to left, #ee8d0e, #eb3232);
-    background: linear-gradient(to left, #ee8d0e, #eb3232);
+    margin: 0 10px;
+    background: black;
 }
-.home-nav button:hover{
+.home-title button:hover{
     transform: scale(1.04);
 }
 .home-title {
+    width: 50%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    
+    justify-content: space-between;
+    margin: 0 6rem;
+    width: calc(100vw - 9rem);
 }
-.home-title-txt {
-    text-align: center;
-    font-size: 2.5rem;
-}
-.home-content{
-    height: calc(100vh - 8rem);
-    width: 100vw;
+#imagem{
+    width: 100px;
 }
 .home-content-auction{
     margin: 0 6rem;
-    border-radius: 8px;
-    background-color: #333;
+    border-radius: 1px;
+    background-color: #a9a9a9;
     height: 100%;
     overflow: auto;
     padding: 2rem;
@@ -91,3 +84,48 @@
 .home-auction-card:hover{
     transform: scale(1.04);
 }
+.header-select-inputs{
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    justify-content: center;
+    
+    margin: 0 6rem;
+    width: calc(100vw - 9rem);
+    
+}
+.header-select-inputs select{
+    width: 25%;
+    height: 55%;
+    margin: 0 15px;
+    border-radius: 5px 5px 5px 5px;
+    
+    
+}
+.filter-button{
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    padding: 50px;
+    justify-content: end;
+    margin: 0 6rem;
+    width: calc(100vw - 9rem);
+    
+    
+}
+.filter-button button{
+    width: 8rem;
+    height: 3rem;
+    padding: 4px;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    color: white;
+    border-style: hidden;
+    background: black;
+}
+
