@@ -1,77 +1,124 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './styles.css'
 import img from '../../assets/uno_velho.png'
 import { Modal } from "../../components/Modal";
 import carro from '../../assets/carro.png'
-//acrescentar o painel de filtro
-//ajustar o header
-//melhorar os botões
+import {mockBackend} from '../../../mockJson'
 
-export default function Homepage(){
-  
+
+type Card = {
+    title: string;
+    subTitle: string;
+    image: string;
+    description: string;
+    subDescription: string;
+    value: string;
+}
+type Auth = {
+  auth: string;
+  name: string;
+}
+
+export default function Homepage(){  
   const [showModal, setShowModal] = useState(false);
-  function openModal() {
-    setShowModal(true)
-  }
+  const [currentCard, setCurrentCard] = useState <Card | null>(null); 
+  const [auth, setAuth] = useState <Auth | null>(null)
+  const [cardList, setCardList] = useState <Card[]>([]); 
 
   const navigate = useNavigate()
+  
+  
 
+  useEffect(() => {
+    const user:any = sessionStorage.getItem('auth')
+    console.log(user)
+    if (user){
+      setAuth(JSON.parse(user));
+    }
+
+  },[])
+
+  useEffect(() =>{
+    const response = mockBackend
+    if (response && response.length > 0){
+      setCardList(response)
+    }
+  },[])
+  
+
+  function openModal(item:Card) {
+    if (auth && auth.name){
+      setCurrentCard(item)
+      setShowModal(true)
+    }else{
+      navigate('/login')
+    }
+  }
   const changePageLogin = () =>{
     navigate('/login')
   }
   const changePageRegister = () =>{
     navigate('/register')
   }
+  const signOut = () =>{
+    sessionStorage.removeItem('auth')
+    setAuth(null) 
+  }
+  
 
     return (
       <div className="home-container">
         <div className="home-title">
           <img id="imagem" src={carro} alt="Pesquisar Carro" />
-          <div className="btn-login">
+         {!auth &&  <div className="btn-login">
             <button onClick={changePageLogin}>Login</button>
             <button onClick={changePageRegister}>Cadastre-se</button>
-          </div>
+          </div> }
+          {auth && auth.name &&  <div className="btn-login">
+            <span>Bem vindo(a), {auth.name} </span>
+            <button onClick={signOut}>Sign out</button>
+          </div> }
         </div>
         <div className="header-select-input-class">
           <div className="header-select-inputs">
             <select size={1} className="select-header-one">
-              <option selected>Unidade?</option>
+              <option selected>Unidade</option>
               <option>São Paulo</option>
-              <option>Rio de Janeiro</option>
-              <option>Espirito Santo</option>
+              <option>São Paulo</option>
+              <option>São Paulo</option>
             </select>
             <select size={1} className="select-header-two">
-              <option selected>localidade???</option>
+              <option selected>Localidade</option>
               <option>200km</option>
               <option>300km</option>
               <option>400km+</option>
             </select>
             <select size={1} className="select-header-three">
-              <option selected>Modelos???</option>
-              <option>Uno com escada</option>
-              <option>Versa de uber</option>
-              <option>moby da telefonica</option>
+              <option selected>Modelo</option>
+              <option>SUV</option>
+              <option>SEDAN</option>
+              <option>HATCH</option>
             </select>
           </div>
           <div className="header-select-inputs">
             <select size={1} className="select-header-four">
-              <option selected>Ano do carro???</option>
-              <option>zero de fabrica?</option>
-              <option>2000 e hoje</option>
-              <option>rodado</option>
+              <option selected>Ano do Veículo</option>
+              <option>150.000km</option>
+              <option>1.125.000km</option>
+              <option>96.000km</option>
             </select>
             <select size={1} className="select-header-five">
-              <option selected>quanto quer pagar?</option>
-              <option>1real</option>
-              <option>1000pila</option>
-              <option>de graça?</option>
+              <option selected>Faixa de preço</option>
+              <option>R$ 10.000,00</option>
+              <option>R$ 9.000,00</option>
+              <option>R$ 5.000,00</option>
             </select>
             <select size={1} className="select-header-six">
-              <option selected>versão</option>
-              <option>state wagon</option>
-              <option>suv</option>
-              <option>???</option>
+              <option selected>Estado do Veículo</option>
+              <option>Marcas de uso</option>
+              <option>Muitos detalhes</option>
+              <option>Motor não funcional</option>
             </select>
           </div>
         </div>
@@ -80,43 +127,21 @@ export default function Homepage(){
         </div>
         <div className="home-content">
           <div className="home-content-auction">
-            <div onClick={openModal} className="home-auction-card">
+            {cardList && cardList.length > 0 && cardList.map((item:Card,key:number) => (
+              <div key={key} onClick={() => openModal(item)} className="home-auction-card">
               <img src={img}></img>
-              <h4>Carro novinho</h4>
+              <h4>{item.subTitle}</h4>
               <span>
-                Carro de leilão Carro de leilão Carro de leilão Carro de leilão{" "}
+                {item.description}{" "}
               </span>
-              <span>R$ 10.000,00</span>
+              <span>{item.value}</span>
             </div>
-            <div className="home-auction-card">
-              <img src={img}></img>
-              <h4>Carro novinho</h4>
-              <span>
-                Carro de leilão Carro de leilão Carro de leilão Carro de leilão{" "}
-              </span>
-              <span>R$ 10.000,00</span>
-            </div>
-            <div className="home-auction-card">
-              <img src={img}></img>
-              <h4>Carro novinho</h4>
-              <span>
-                Carro de leilão Carro de leilão Carro de leilão Carro de leilão{" "}
-              </span>
-              <span>R$ 10.000,00</span>
-            </div>
-            <div className="home-auction-card">
-              <img src={img}></img>
-              <h4>Carro novinho</h4>
-              <span>
-                Carro de leilão Carro de leilão Carro de leilão Carro de leilão{" "}
-              </span>
-              <span>R$ 10.000,00</span>
-            </div>
+            ))}
           </div>
         </div>
-        {showModal && (
+        {showModal && currentCard && (
           <Modal
-            header="Fiat Uno zero bala"
+            header={currentCard?.title}
             setShowModal={setShowModal}
             cancelFunction={() => {}}
             confirmFunction={() => {}}
@@ -125,15 +150,13 @@ export default function Homepage(){
           >
             <div className="home-auction-card">
               <img src={img}></img>
-              <h4>Carro novinho</h4>
+              <h4>{currentCard?.subTitle}</h4>
               <span>
-                Carro de leilão Carro de leilão Carro de leilão Carro de leilão{" "}
+                {currentCard.subDescription}{" "}
               </span>
-              <span>R$ 10.000,00</span>
+              <span>{currentCard.value}</span>
               <a>
-                DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO -
-                DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO -
-                DESCRIÇÃO - DESCRIÇÃO - DESCRIÇÃO -{" "}
+                {currentCard.description}{" "}
               </a>
             </div>
           </Modal>

@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { LayoutComponents } from '../../components/LayoutComponents'
+import Swal from 'sweetalert2'
 
 
 
@@ -12,7 +13,22 @@ export const Login = () => {
   const [showRegister, setRegister] = useState(false);
 
   const trocaPagina = () =>{
-    navigate('/home')
+    if (email === "j4_manu@hotmail.com" && password === "1234"){
+      sessionStorage.setItem('auth', JSON.stringify({
+        auth: '9876aaa',
+        name: 'Emmanuel',
+      }) )
+      navigate('/home')
+    }else{
+      /* Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Dados invalidos',
+        showConfirmButton: true,
+        confirmButtonText: "concordo",
+      }) */
+      alert("Dados invalidos")
+    }
   }
 
   
