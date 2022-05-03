@@ -10,7 +10,7 @@ export const Login = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showRegister, setRegister] = useState(false);
+  
 
   const trocaPagina = () =>{
     if (email === "j4_manu@hotmail.com" && password === "1234"){
@@ -30,8 +30,6 @@ export const Login = () => {
       alert("Dados invalidos")
     }
   }
-
-  
 
 
   return (

@@ -65,7 +65,7 @@ export default function Homepage(){
     sessionStorage.removeItem('auth')
     setAuth(null) 
   }
-  
+
 
     return (
       <div className="home-container">
